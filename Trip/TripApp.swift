@@ -4,8 +4,7 @@ import SwiftUI
 struct TripApp: App {
     var body: some Scene {
         WindowGroup {
-            //RootView()
-            LoginView()
+            RootView()
         }
     }
 }

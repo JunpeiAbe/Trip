@@ -22,22 +22,18 @@ final class LoginViewState: TextFieldValidatable {
         }
         return true
     }
-    
-    let authRepository: AuthRepositoryProtocol
-    
-    init(authRepository: AuthRepositoryProtocol = AuthRepository()) {
-        self.authRepository = authRepository
-    }
-    
+    /// ログインボタンタップ
     func loginButtonPressed() {
         isLoggingIn = true
         Task {
             defer { isLoggingIn = false }
             do {
-                guard let token = try await authRepository.logIn(email: email, password: password) else {
-                    return
-                }
+                try await LoginStore.shared.logIn(email: email, password: password)
             } catch {
+                // アクセストークンがnilの場合
+                if LoginStore.shared.value == nil {
+                    print(error)
+                }
                 isLoggingIn = false
             }
         }
