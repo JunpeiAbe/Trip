@@ -2,7 +2,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State var viewState: LoginViewState = .init()
+    @State var viewState: LoginViewState
     // どの入力欄にフォーカスが当たっているか
     @FocusState private var focusedField: FocusableField?
     
@@ -76,6 +76,6 @@ struct LoginView: View {
     }
 }
 
-#Preview {
-    LoginView()
-}
+//#Preview {
+//    LoginView()
+//}

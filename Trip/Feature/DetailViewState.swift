@@ -1,7 +1,7 @@
 import SwiftUI
 
 @MainActor @Observable
-final class MainViewState {
+final class DetailViewState {
     let router: AppRouter // ✅ 画面遷移を管理する Router
     
     init(router: AppRouter) {
@@ -10,10 +10,7 @@ final class MainViewState {
     /// ログアウトボタンタップ
     func logOutButtonPressed() {
         LoginStore.shared.logOut()
-        router.pop()
-    }
-    /// 詳細画面に遷移
-    func detailButtonPressed() {
-        router.push(.detail)
+        router.popToRoot()
     }
 }
+

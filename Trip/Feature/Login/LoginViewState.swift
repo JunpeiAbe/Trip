@@ -22,6 +22,11 @@ final class LoginViewState: TextFieldValidatable {
         }
         return true
     }
+    let router: AppRouter
+    
+    init(router: AppRouter) {
+        self.router = router
+    }
     /// ログインボタンタップ
     func loginButtonPressed() {
         isLoggingIn = true
@@ -29,6 +34,7 @@ final class LoginViewState: TextFieldValidatable {
             defer { isLoggingIn = false }
             do {
                 try await LoginStore.shared.logIn(email: email, password: password)
+                router.push(.main)
             } catch {
                 // アクセストークンがnilの場合
                 if LoginStore.shared.value == nil {
