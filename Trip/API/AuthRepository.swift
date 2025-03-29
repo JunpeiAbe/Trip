@@ -1,5 +1,5 @@
 import Foundation
-
+@MainActor
 protocol AuthRepositoryProtocol {
     func logIn(email: String, password: String) async throws -> AuthResponse
 }

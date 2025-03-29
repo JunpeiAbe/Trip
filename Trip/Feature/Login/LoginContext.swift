@@ -1,9 +1,9 @@
 import Foundation
 
 final class LoginContext: Sendable {
-    let accessToken: AccessToken
+    let accessToken: String
     
-    init(accessToken: AccessToken) {
+    init(accessToken: String) {
         self.accessToken = accessToken
     }
 }

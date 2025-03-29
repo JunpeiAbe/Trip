@@ -4,7 +4,14 @@ import SwiftUI
 struct TripApp: App {
     var body: some Scene {
         WindowGroup {
-            RootView()
+            RootView(
+                state: .init(
+                    router: AppRouter(),
+                    loginStore: .init(
+                        authRepository: StubAuthRepository_Success()
+                    )
+                )
+            )
         }
     }
 }
