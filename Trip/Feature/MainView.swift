@@ -27,10 +27,8 @@ struct MainView: View {
         }
         .padding(.horizontal, 16)
         .navigationTitle("Main")
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
     }
 }
 
-//#Preview {
-//    MainView()
-//}

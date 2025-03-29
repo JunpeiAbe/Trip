@@ -18,5 +18,6 @@ struct DetailView: View {
         }
         .padding(.horizontal, 16)
         .navigationTitle("Detail")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

@@ -6,14 +6,21 @@ struct RootView: View {
     var body: some View {
         // RouterのpathをNavigationStack にバインド
         NavigationStack(path: $state.router.path) {
-            LoginView(
-                viewState: .init(
+            SplashView(
+                state: .init(
                     router: state.router,
                     loginStore: state.loginStore
                 )
             )
             .navigationDestination(for: AppRoute.self) { route in
                 switch route {
+                case .login:
+                    LoginView(
+                        viewState: .init(
+                            router: state.router,
+                            loginStore: state.loginStore
+                        )
+                    ) // LoginView に遷移
                 case .main:
                     MainView(
                         viewState: .init(
@@ -28,6 +35,7 @@ struct RootView: View {
                             loginStore: state.loginStore
                         )
                     ) // DetailViewに遷移
+                    
                 }
             }
         }

@@ -54,6 +54,7 @@ struct LoginView: View {
             .padding(.horizontal, 16)
             
         }
+        .navigationBarBackButtonHidden(true)
         .onChange(of: viewState.focusingField) { oldField, newField in
             // viewStateのfocusingFieldを更新時にViewのfocusedFieldを更新
             // viewState→viewへの反映

@@ -1,7 +1,6 @@
-import SwiftUI
-
+import Foundation
 @MainActor @Observable
-final class DetailViewState {
+final class SplashViewState {
     /// 画面遷移を管理するRouter
     private let router: AppRouter
     /// ストア
@@ -14,10 +13,8 @@ final class DetailViewState {
         self.router = router
         self.loginStore = loginStore
     }
-    /// ログアウトボタンタップ
-    func logOutButtonPressed() {
-        loginStore.logOut()
-        router.pop(.login)
+    
+    func firstLoad() {
+        router.push(.login)
     }
 }
-
