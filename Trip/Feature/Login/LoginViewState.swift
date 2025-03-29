@@ -25,10 +25,17 @@ final class LoginViewState: TextFieldValidatable {
         }
         return true
     }
-    let router: AppRouter
+    /// 画面遷移を管理するRouter
+    private let router: AppRouter
+    /// ストア
+    private let loginStore: LoginStore
     
-    init(router: AppRouter) {
+    init(
+        router: AppRouter,
+        loginStore: LoginStore
+    ) {
         self.router = router
+        self.loginStore = loginStore
     }
     /// ログインボタンタップ
     func loginButtonPressed() {
@@ -37,12 +44,12 @@ final class LoginViewState: TextFieldValidatable {
         Task {
             defer { isLoggingIn = false }
             do {
-                try await LoginStore.shared.logIn(email: email, password: password)
+                try await loginStore.logIn(email: email, password: password)
                 SVProgressHUD.dismissLoading()
                 router.push(.main)
             } catch {
                 // アクセストークンがnilの場合
-                if LoginStore.shared.value == nil {
+                if loginStore.value == nil {
                     print(error)
                 }
                 isLoggingIn = false

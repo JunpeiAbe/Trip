@@ -3,12 +3,16 @@ import SwiftUI
 @MainActor @Observable
 final class LoginStore {
     
-    static let shared: LoginStore = .init()
-    
     private(set) var value: LoginContext?
     
+    private let authRepository: AuthRepositoryProtocol
+    
+    init(authRepository: AuthRepositoryProtocol) {
+        self.authRepository = authRepository
+    }
+    
     func logIn(email: String, password: String) async throws {
-        guard let accessToken = try await AuthRepository.logIn(email: email, password: password) else { return }
+        let accessToken = try await authRepository.logIn(email: email, password: password).accessToken
         value = LoginContext(accessToken: accessToken)
     }
     
