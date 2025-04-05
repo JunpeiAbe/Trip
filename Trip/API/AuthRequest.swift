@@ -10,7 +10,7 @@ struct AuthRequest: APIRequestable {
     /// 認証リクエストのボディ部分
     struct AuthRequestBody: Codable {
         let mailAddress: String
-        let password: String
+        let password: String?
         let accessToken: String?
         let refreshToken: String?
         
@@ -36,12 +36,11 @@ struct AuthRequest: APIRequestable {
     /// tokenあり かつ 有効期限切れでない場合
     init(
         mailAddress: String,
-        password: String,
         accessToken: String
     ) {
         self.httpBody = AuthRequestBody(
             mailAddress: mailAddress,
-            password: password,
+            password: nil,
             accessToken: accessToken,
             refreshToken: nil
         )
@@ -54,7 +53,7 @@ struct AuthRequest: APIRequestable {
     ) {
         self.httpBody = AuthRequestBody(
             mailAddress: mailAddress,
-            password: password,
+            password: nil,
             accessToken: nil,
             refreshToken: refreshToken
         )
