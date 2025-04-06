@@ -1,6 +1,7 @@
 import SwiftUI
 /// 共通ボタン
 // メンバーワイズイニシャライザでプロパティを指定
+// TODO: 共通利用可能なstyleを定義する
 struct CommonButton: View {
     
     enum IconPosition {
@@ -181,41 +182,41 @@ extension CommonButton {
 
 #Preview {
     VStack(spacing: 20) {
-            
-            // ① 文字のみ
-            CommonButton.textOnly(
-                title: "ログイン",
-                isEnabled: .constant(true),
-                action: { print("ログイン") }
-            )
-            .frame(height: 50)
-            
-            // ② アイコンのみ（背景なし）
-            CommonButton.iconOnly(
-                icon: Image(systemName: "heart.fill"),
-                iconColor: .green,
-                iconSize: 32,
-                action: { print("ハート押下") }
-            )
-
-            // ③ アイコン＋背景
-            CommonButton.iconWithBackground(
-                icon: Image(systemName: "pencil"),
-                backgroundColor: .orange,
-                action: { print("編集ボタン") }
-            )
-            .frame(width: 44, height: 44)
-
-            // ④ 文字＋アイコン（右）
-            CommonButton.textWithIcon(
-                title: "次へ",
-                icon: Image(systemName: "chevron.right"),
-                iconPosition: .trailing,
-                isEnabled: .constant(true),
-                action: { print("次へ押下") }
-            )
-            .frame(height: 50)
-            
-        }
-        .padding()
+        
+        // ① 文字のみ
+        CommonButton.textOnly(
+            title: "ログイン",
+            isEnabled: .constant(true),
+            action: { print("ログイン") }
+        )
+        .frame(height: 50)
+        
+        // ② アイコンのみ（背景なし）
+        CommonButton.iconOnly(
+            icon: Image(systemName: "heart.fill"),
+            iconColor: .green,
+            iconSize: 32,
+            action: { print("ハート押下") }
+        )
+        
+        // ③ アイコン＋背景
+        CommonButton.iconWithBackground(
+            icon: Image(systemName: "pencil"),
+            backgroundColor: .orange,
+            action: { print("編集ボタン") }
+        )
+        .frame(width: 44, height: 44)
+        
+        // ④ 文字＋アイコン（右）
+        CommonButton.textWithIcon(
+            title: "次へ",
+            icon: Image(systemName: "chevron.right"),
+            iconPosition: .trailing,
+            isEnabled: .constant(true),
+            action: { print("次へ押下") }
+        )
+        .frame(height: 50)
+        
+    }
+    .padding()
 }

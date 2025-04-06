@@ -9,7 +9,6 @@ struct DetailView: View {
             /// ログアウトボタン
             CommonButton(
                 title: "Logout",
-                cornerRadius: 8,
                 isEnabled: .constant(true)
             ) {
                 viewState.logOutButtonPressed()

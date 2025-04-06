@@ -9,7 +9,6 @@ struct MainView: View {
             /// ログアウトボタン
             CommonButton(
                 title: "Logout",
-                cornerRadius: 8,
                 isEnabled: .constant(true)
             ) {
                 viewState.logOutButtonPressed()
@@ -18,7 +17,6 @@ struct MainView: View {
             /// ログアウトボタン
             CommonButton(
                 title: "Detail",
-                cornerRadius: 8,
                 isEnabled: .constant(true)
             ) {
                 viewState.detailButtonPressed()

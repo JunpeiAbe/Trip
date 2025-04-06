@@ -44,7 +44,6 @@ struct LoginView: View {
                 /// ログインボタン
                 CommonButton(
                     title: "Login",
-                    cornerRadius: 8,
                     isEnabled: .constant(viewState.isLoginButtonEnabled)
                 ) {
                     viewState.loginButtonPressed()
