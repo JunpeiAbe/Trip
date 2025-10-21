@@ -39,9 +39,24 @@ struct RootView: View {
                 }
             }
         }
+        .loading(
+            isPresented: $state.isLoading,
+            background: { Color.overlayGray }
+        )
+        .environment(
+            \.loading,
+             .init(
+                show: { state.isLoading = true },
+                hide: { state.isLoading = false }
+             )
+        )
     }
 }
 
-//#Preview {
-//    RootView()
-//}
+#Preview {
+    let router: AppRouter = .init()
+    let repository: AuthRepository = .init()
+    let loginStore: LoginStore = .init(authRepository: repository)
+    let state: RootViewState = .init(router: router, loginStore: loginStore)
+    RootView(state: state)
+}
