@@ -15,11 +15,6 @@ final class SplashViewState {
     }
     
     func firstLoad() {
-        // アクセストークンが保存済み かつ 有効期限内の場合
-        if loginStore.checkTokenExpireDate() {
-            router.push(.main)
-        } else {
-            router.push(.login)
-        }
+        router.push(.main)
     }
 }

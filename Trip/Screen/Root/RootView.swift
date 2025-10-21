@@ -30,7 +30,7 @@ struct RootView: View {
                     ) // MainView に遷移
                 case .detail:
                     DetailView(
-                        viewState: .init(
+                        state: .init(
                             router: state.router,
                             loginStore: state.loginStore
                         )

@@ -6,6 +6,8 @@ final class DetailViewState {
     private let router: AppRouter
     /// ストア
     private let loginStore: LoginStore
+    /// ローディング表示するかどうか
+    private(set) var isShowLoading: Bool = false
     
     init(
         router: AppRouter,
@@ -14,10 +16,12 @@ final class DetailViewState {
         self.router = router
         self.loginStore = loginStore
     }
-    /// ログアウトボタンタップ
-    func logOutButtonPressed() {
-        loginStore.logOut()
-        router.pop(.login)
+    /// ローディング表示ボタンタップ
+    func didTapShowIndicatorButton() {
+        isShowLoading = true
+        Task {
+            try await Task.sleep(nanoseconds: 2_000_000_000)
+            isShowLoading = false
+        }
     }
 }
-
