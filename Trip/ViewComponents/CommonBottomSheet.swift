@@ -94,24 +94,6 @@ struct CommonBottomSheetView: View {
     }
 }
 
-extension View {
-    @ViewBuilder
-    func floatingBottomSheet<Content: View>(
-        isPresented: Binding<Bool>,
-        onDismiss: @escaping () -> () = {},
-        @ViewBuilder content: @escaping () -> Content
-    ) -> some View {
-        self
-            .sheet(isPresented: isPresented, onDismiss: onDismiss) {
-                content()
-                    .presentationCornerRadius(25)
-                    .presentationDragIndicator(.hidden)
-                    .presentationBackgroundInteraction(.disabled)
-                    .interactiveDismissDisabled(true)
-            }
-    }
-}
-
 struct CommonBottomSheetSampleView: View {
     @State private var showSheet = false
     @State private var sheetHeight: CGFloat = 0

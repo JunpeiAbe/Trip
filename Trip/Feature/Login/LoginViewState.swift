@@ -1,5 +1,4 @@
 import SwiftUI
-import SVProgressHUD
 
 @MainActor @Observable
 final class LoginViewState: TextFieldValidatable {
@@ -40,12 +39,10 @@ final class LoginViewState: TextFieldValidatable {
     /// ログインボタンタップ
     func loginButtonPressed() {
         isLoggingIn = true
-        SVProgressHUD.showLoading()
         Task {
             defer { isLoggingIn = false }
             do {
                 try await loginStore.logIn(email: email, password: password)
-                SVProgressHUD.dismissLoading()
                 router.push(.main)
             } catch {
                 // アクセストークンがnilの場合
@@ -53,7 +50,6 @@ final class LoginViewState: TextFieldValidatable {
                     print(error)
                 }
                 isLoggingIn = false
-                SVProgressHUD.dismissLoading()
             }
         }
     }
