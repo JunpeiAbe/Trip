@@ -7,7 +7,7 @@ final class RootViewState {
     
     let loginStore: LoginStore
     
-    var loginContext: LoginContext? {
+    var loginContext: AuthResponse? {
         loginStore.value
     }
     

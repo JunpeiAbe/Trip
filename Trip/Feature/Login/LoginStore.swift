@@ -3,7 +3,7 @@ import SwiftUI
 @MainActor @Observable
 final class LoginStore {
     
-    @AppStorage private(set) var value: AuthResponse?
+    private(set) var value: AuthResponse?
     
     private let authRepository: AuthRepositoryProtocol
     
