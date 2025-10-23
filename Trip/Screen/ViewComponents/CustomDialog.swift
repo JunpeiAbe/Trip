@@ -1,8 +1,8 @@
 import SwiftUI
 /// 画面全体に可能な限り、大きく表示するダイアログ
 struct CustomDialog: View {
-    /// 閉じるボタンタップ時
-    var onClose: (() -> Void)?
+    @Environment(\.dialog) var dialog
+    @Binding var isChecked: Bool
     
     var body: some View {
         dialogSheet
@@ -15,11 +15,30 @@ struct CustomDialog: View {
                 sampleContent
             }
             .contentMargins(.all, 16, for: .scrollContent)
-            Button("閉じる"){
-                onClose?()
+    
+            Group {
+                Button {
+                    dialog.onCheck()
+                } label: {
+                    HStack(spacing: 8) {
+                        Image(systemName: isChecked ? "square.fill" : "square")
+                            .foregroundStyle(
+                                isChecked
+                                ? .blue
+                                : .gray
+                            )
+                        Text("チェックする")
+                            .font(.system(size: 14))
+                    }
+                }
+                .buttonStyle(.plain)
+                
+                Button("閉じる"){
+                    dialog.onClose()
+                }
+                .buttonStyle(.outlineAndCapsule())
+                .frame(width: 200, height: 48)
             }
-            .buttonStyle(.outlineAndCapsule())
-            .frame(width: 200, height: 48)
             .padding(16)
         }
         .background {
@@ -41,6 +60,7 @@ var sampleContent: some View {
 }
 
 #Preview {
-    CustomDialog()
+    @Previewable @State var isChecked: Bool = false
+    CustomDialog(isChecked: $isChecked)
 }
 

@@ -4,11 +4,18 @@ struct DetailView: View {
     
     @State var state: DetailViewState
     @Environment(\.loading) var loading
+    @Environment(\.dialog) var dialog
     
     var body: some View {
         HStack(alignment: .center) {
             Button("Show Indicator"){
                 state.didTapShowIndicatorButton()
+            }
+            .buttonStyle(.outlineAndCapsule())
+            .frame(height: 40)
+            .padding(.horizontal, 16)
+            Button("Show Dialog"){
+                dialog.show()
             }
             .buttonStyle(.outlineAndCapsule())
             .frame(height: 40)

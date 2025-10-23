@@ -8,6 +8,8 @@ final class DetailViewState {
     private let loginStore: LoginStore
     /// ローディング表示するかどうか
     private(set) var isShowLoading: Bool = false
+    /// ダイアログ表示するかどうか
+    private(set) var isShowDialog: Bool = false
     
     init(
         router: AppRouter,
@@ -23,5 +25,13 @@ final class DetailViewState {
             try await Task.sleep(nanoseconds: 2_000_000_000)
             isShowLoading = false
         }
+    }
+    /// カスタムダイアログ表示ボタンタップ
+    func onTapShowDialogButton() {
+        isShowDialog = true
+    }
+    /// カスタムダイアログ閉じるボタンタップ
+    func onTapDialogCloseButton() {
+        isShowDialog = false
     }
 }

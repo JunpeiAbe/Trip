@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 @MainActor @Observable
 final class RootViewState {
@@ -8,6 +9,12 @@ final class RootViewState {
     let loginStore: LoginStore
     
     var isLoading: Bool = false
+    
+    var isShowDialog: Bool = false
+    
+    var isDialogChecked: Bool = false
+    
+    @ObservationIgnored @AppStorage("shouldShowDialogOnAppear") var shouldShowDialogOnAppear: Bool = true
     
     var loginContext: AuthResponse? {
         loginStore.value
@@ -23,5 +30,11 @@ final class RootViewState {
     ) {
         self.router = router
         self.loginStore = loginStore
+    }
+    
+    func onTapDialogCloseButton() {
+        isShowDialog = false
+        // ダイアログのチェック状態を端末に保存
+        isDialogChecked = isDialogChecked
     }
 }

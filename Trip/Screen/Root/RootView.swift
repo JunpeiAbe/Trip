@@ -43,11 +43,27 @@ struct RootView: View {
             isPresented: $state.isLoading,
             background: { Color.overlayGray }
         )
+        .dialog(
+            isPresented: $state.isShowDialog,
+            content: {
+                CustomDialog(isChecked: $state.isDialogChecked)
+            },
+            background: { Color.overlayGray }
+        )
         .environment(
             \.loading,
              .init(
                 show: { state.isLoading = true },
                 hide: { state.isLoading = false }
+             )
+        )
+        .environment(
+            \.dialog,
+             .init(
+                show: { state.isShowDialog = true },
+                hide: { state.isShowDialog = false },
+                onCheck: { state.isDialogChecked.toggle() },
+                onClose: { state.onTapDialogCloseButton() }
              )
         )
     }

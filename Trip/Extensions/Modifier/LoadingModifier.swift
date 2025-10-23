@@ -12,6 +12,10 @@ struct LoadingModifier<Background: View>: ViewModifier {
                     ZStack {
                         background()
                             .ignoresSafeArea()
+                        RoundedRectangle(cornerRadius: 8)
+                            .frame(width: 80, height: 80)
+                            .foregroundStyle(.white)
+                            .shadow(radius: 8, x: 4, y: 4)
                         ProgressView()
                             .scaleEffect(2.0)
                     }
