@@ -6,6 +6,7 @@ final class MainViewState {
     private let router: AppRouter
     /// アラートが表示されているかどうか
     /// - note: 複数のアラートが表示されるのを防ぐため一つの状態として表示中かどうかを管理する
+    // - TODO: 画面単位ではなくRootViewで一括管理する。画面で行うのはalertStateの更新のみ
     var alertState: AlertState = .dismissed
     var alertContent: AlertContent {
         alertState.alertType?.content ?? .init(title: "不正なエラー", message: "メッセージ", onTapCancelButton: {}, onTapOKButton: {})
