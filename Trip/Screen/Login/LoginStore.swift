@@ -26,5 +26,9 @@ final class LoginStore {
         // アクセストークンの有効期限が切れていないかどうか
         return true
     }
+    
+    func throwsError() -> APIClientError {
+        return APIClientError.notConnectedInternet
+    }
 }
 

@@ -16,8 +16,7 @@ final class MainViewState {
     }
     /// ログアウトボタンタップ
     func logOutButtonPressed() {
-        loginStore.logOut()
-        router.pop(.login)
+        router.pop()
     }
     /// 詳細画面に遷移
     func detailButtonPressed() {

@@ -9,6 +9,8 @@ enum APIClientError: LocalizedError {
     case invalidResponse(statusCode: Int)
     /// デコード失敗
     case decodingFailed
+    /// 通信失敗
+    case notConnectedInternet
     
     var errorDescription: String {
         switch self {
@@ -20,6 +22,24 @@ enum APIClientError: LocalizedError {
             return "サーバーからのレスポンスが不正です。ステータスコード: \(code)"
         case .decodingFailed:
             return "レスポンスの解析に失敗しました。"
+        case .notConnectedInternet:
+            return "ネットワークが接続されていません。"
+        }
+    }
+    
+    var alertContent: AlertContent {
+        switch self {
+            
+        case .invalidURL:
+                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00001", onTapOKButton: {})
+        case .requestFailed(_):
+                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00002", onTapOKButton: {})
+        case .invalidResponse(statusCode: _):
+                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00003", onTapOKButton: {})
+        case .decodingFailed:
+                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00004", onTapOKButton: {})
+        case .notConnectedInternet:
+                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00005", onTapOKButton: {})
         }
     }
 }

@@ -16,30 +16,13 @@ struct CommonBottomSheetView: View {
     var message: String?
     var iconImage: IconConfiguration
     var primaryButton: ButtonConfiguration
-    var secondaryButton: ButtonConfiguration?
+    var secondaryButton: ButtonConfiguration
     /// State Properties
     var body: some View {
-        VStack(spacing: 15) {
-            
-            iconImage(iconImage)
-            
-            Text(title)
-                .font(.title3.bold())
-            
-            if let message {
-                Text(message)
-                    .font(.system(size: 14))
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
-                    .foregroundStyle(.gray)
-                    .padding(.vertical, 4)
-            }
-            
-            sheetButton(primaryButton)
-            
-            if let secondaryButton {
+        VStack(spacing: .zero) {
+            HStack(spacing: 16) {
                 sheetButton(secondaryButton)
-                    .padding(.top, 8)
+                sheetButton(primaryButton)
             }
         }
         .padding(16)
@@ -50,8 +33,10 @@ struct CommonBottomSheetView: View {
             GeometryReader { geometry in
                 Color.clear
                     .preference(key: ViewHeightKey.self, value: geometry.size.height)
+                    .ignoresSafeArea()
             }
         )
+        .ignoresSafeArea(.container, edges: .bottom)
     }
     
     struct IconConfiguration {

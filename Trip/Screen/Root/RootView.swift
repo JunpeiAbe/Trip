@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RootView: View {
     @State var state: RootViewState
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
         // RouterのpathをNavigationStack にバインド
@@ -39,6 +40,20 @@ struct RootView: View {
                 }
             }
         }
+        .overlay {
+            Color.overlayGray
+                .ignoresSafeArea()
+                .alert(
+                    isPresented: .constant(state.isShowAlert),
+                    message: state.alertContent?.message ?? .init(),
+                    errorCode: state.alertContent?.errorCode ?? .init(),
+                    onTapOKButton: {
+                        print("onTapOKButton")
+                        state.alertContent?.onTapOKButton()
+                        state.alertContent = nil
+                    }
+                )
+        }
         .loading(
             isPresented: $state.isLoading,
             background: { Color.overlayGray }
@@ -66,6 +81,18 @@ struct RootView: View {
                 onClose: { state.onTapDialogCloseButton() }
              )
         )
+        .onChange(of: scenePhase, initial: false) { old, new in
+            switch scenePhase {
+            case .background:
+                state.onBackground()
+            case .active:
+                state.onForeground()
+            case .inactive:
+                break
+            @unknown default:
+                break
+            }
+        }
     }
 }
 
