@@ -24,9 +24,8 @@ struct RootView: View {
                     ) // LoginView に遷移
                 case .main:
                     MainView(
-                        viewState: .init(
-                            router: state.router,
-                            loginStore: state.loginStore
+                        state: .init(
+                            router: state.router
                         )
                     ) // MainView に遷移
                 case .detail:

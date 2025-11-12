@@ -31,15 +31,15 @@ enum APIClientError: LocalizedError {
         switch self {
             
         case .invalidURL:
-                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00001", onTapOKButton: {})
+                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00001", onTapCancelButton: {}, onTapOKButton: {})
         case .requestFailed(_):
-                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00002", onTapOKButton: {})
+                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00002", onTapCancelButton: {}, onTapOKButton: {})
         case .invalidResponse(statusCode: _):
-                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00003", onTapOKButton: {})
+                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00003", onTapCancelButton: {}, onTapOKButton: {})
         case .decodingFailed:
-                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00004", onTapOKButton: {})
+                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00004", onTapCancelButton: {}, onTapOKButton: {})
         case .notConnectedInternet:
-                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00005", onTapOKButton: {})
+                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00005", onTapCancelButton: {}, onTapOKButton: {})
         }
     }
 }
