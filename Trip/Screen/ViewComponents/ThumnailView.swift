@@ -27,21 +27,23 @@ struct ThumnailView: View {
         .task(id: displayScale) {
             print("change displayScale")
             // サムネイル画像の生成
-            guard let thumnail = await makeThumnail(maxPointSize: 100) else {
+            guard let thumnail = await makeThumnail(maxPointSize: 100, displayScale: displayScale) else {
                 print("not thumnail")
                 loadThumnailImage = UIImage(systemName: "x.square")
                 return
             }
             loadThumnailImage = thumnail
         }
-        .onChange(of: loadThumnailImage) { _, newValue in
-        }
     }
 }
 
 private extension ThumnailView {
     /// サムネイル画像の生成
-    func makeThumnail(maxPointSize: CGFloat) async -> UIImage? {
+    /// - note: @concurrentを付与することで呼び出しもとのActorの外で実行される
+    /// - 呼び出し元がMainActorの場合はMainActor外で実行される
+    @concurrent
+    func makeThumnail(maxPointSize: CGFloat, displayScale: CGFloat) async -> UIImage? {
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
         // 元画像を取得
         let originalImage: UIImage = .thumnail
         // 表示に必要な最大ピクセル数
