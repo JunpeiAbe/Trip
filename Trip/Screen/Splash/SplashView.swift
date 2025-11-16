@@ -6,7 +6,7 @@ struct SplashView: View {
     
     var body: some View {
         HStack(alignment: .center) {
-            Image(uiImage: .tripIcon)
+            Image(uiImage: .thumnail)
                 .resizable()
                 .frame(width: 96, height: 96)
         }

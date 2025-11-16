@@ -3,35 +3,25 @@ import SwiftUI
 struct DetailView: View {
     
     @State var state: DetailViewState
-    @Environment(\.loading) var loading
-    @Environment(\.dialog) var dialog
+    // 3列グリッド
+    private let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     
     var body: some View {
         HStack(alignment: .center) {
-            Button("Show Indicator"){
-                state.didTapShowIndicatorButton()
-            }
-            .buttonStyle(.outlineAndCapsule())
-            .frame(height: 40)
-            .padding(.horizontal, 16)
-            Button("Show Dialog"){
-                dialog.show()
-            }
-            .buttonStyle(.outlineAndCapsule())
-            .frame(height: 40)
-            .padding(.horizontal, 16)
-        }
-        .navigationTitle("Detail")
-        .navigationBarTitleDisplayMode(.inline)
-        .onChange(
-            of: state.isShowLoading
-        ) { _, newValue in
-            if newValue {
-                loading.show()
-            } else {
-                loading.hide()
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 8) {
+                    ForEach(0..<1000) { _ in
+                        ThumnailView()
+                    }
+                }
             }
         }
+        .navigationTitle("Collection")
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 

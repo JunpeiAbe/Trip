@@ -11,7 +11,7 @@ struct TipContent: Tip {
     }
     
     var image: Image? {
-        Image(.tripIcon)
+        Image(.thumnail)
     }
     
     var options: TipOption {
