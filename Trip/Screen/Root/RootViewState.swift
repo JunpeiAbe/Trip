@@ -53,11 +53,6 @@ final class RootViewState {
                 break
             case .notConnectedInternet:
                 var alertContent = error.alertContent
-                alertContent.onTapOKButton = {
-                    Task { @MainActor in
-                        self.router.popToRoot()
-                    }
-                }
                 self.alertContent = alertContent
             }
         }

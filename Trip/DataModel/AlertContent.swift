@@ -8,9 +8,9 @@ struct AlertContent: Equatable {
     /// エラーコード
     var errorCode: String?
     /// キャンセルボタンタップ
-    var onTapCancelButton: () -> Void?
+    var onTapCancelButton: (() -> Void)?
     /// OKボタンタップ
-    var onTapOKButton: () -> Void?
+    var onTapOKButton: (() -> Void)?
 
     static func == (lhs: AlertContent, rhs: AlertContent) -> Bool {
         lhs.title == rhs.title &&

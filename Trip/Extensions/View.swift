@@ -76,20 +76,37 @@ extension View {
                 .interactiveDismissDisabled(true)
         }
     }
-    /// アラート表示(OKボタン)
+    @ViewBuilder
     func alert(
         isPresented: Binding<Bool>,
-        message: String,
-        errorCode: String,
-        onTapOKButton: @escaping () -> Void
+        alertContent: AlertContent?
     ) -> some View {
-        self.alert(.init(stringLiteral: .init()), isPresented: isPresented) {
-            Button("OK") {
-                onTapOKButton()
+            self
+            .overlay {
+                if let alertContent {
+                    Color.clear
+                        .alert(
+                            alertContent.title,
+                            isPresented: isPresented) {
+                                if let onTapCancelButton = alertContent.onTapCancelButton {
+                                    Button("Cancel") {
+                                        onTapCancelButton()
+                                    }
+                                }
+                                if let onTapOKButton = alertContent.onTapOKButton {
+                                    Button("OK") {
+                                        onTapOKButton()
+                                    }
+                                }
+                            } message: {
+                                if let errorCode = alertContent.errorCode {
+                                    Text("\(alertContent.message)\n\(errorCode)")
+                                } else {
+                                    Text("\(alertContent.message)")
+                                }
+                            }
+                }
             }
-        } message: {
-            Text("\(message)\n\(errorCode)")
-        }
     }
 }
 

@@ -3,6 +3,7 @@ import SwiftUI
 struct MainView: View {
     
     @State var state: MainViewState
+    @Environment(\.alert) var alert
     
     var body: some View {
         VStack(alignment: .center) {
@@ -32,18 +33,13 @@ struct MainView: View {
         .onAppear {
             state.onAppear()
         }
-        .alert(
-            state.alertContent.title,
-            isPresented: .constant(state.isShowAlert)) {
-                Button("キャンセル") {
-                    state.alertContent.onTapCancelButton()
-                }
-                Button("OK") {
-                    state.alertContent.onTapOKButton()
-                }
-            } message: {
-                Text(state.alertContent.message)
+        .onChange(of: state.isShowAlert) { _, newValue in
+            if newValue {
+                alert.show(state.alertContent)
+            } else {
+                alert.hide()
             }
+        }
     }
 }
 

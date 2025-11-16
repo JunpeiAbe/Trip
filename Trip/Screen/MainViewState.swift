@@ -9,7 +9,13 @@ final class MainViewState {
     // - TODO: 画面単位ではなくRootViewで一括管理する。画面で行うのはalertStateの更新のみ
     var alertState: AlertState = .dismissed
     var alertContent: AlertContent {
-        alertState.alertType?.content ?? .init(title: "不正なエラー", message: "メッセージ", onTapCancelButton: {}, onTapOKButton: {})
+        alertState.alertType?.content
+        ?? .init(
+            title: "不正なエラー",
+            message: "メッセージ",
+            onTapCancelButton: { self.alertState = .dismissed },
+            onTapOKButton: { self.alertState = .dismissed }
+        )
     }
     var isShowAlert: Bool {
         alertState != .dismissed
@@ -44,7 +50,7 @@ final class MainViewState {
                         title: "確認",
                         message: "メッセージ",
                         errorCode: nil,
-                        onTapCancelButton: { self.alertState = .dismissed },
+                        onTapCancelButton: nil,
                         onTapOKButton: { self.alertState = .dismissed }
                     )
                 )
