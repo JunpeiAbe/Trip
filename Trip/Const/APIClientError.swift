@@ -27,20 +27,20 @@ enum APIClientError: LocalizedError {
         }
     }
     
-    var alertContent: AlertContent {
-        switch self {
-            
-        case .invalidURL:
-                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00001", onTapCancelButton: {}, onTapOKButton: {})
-        case .requestFailed(_):
-                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00002", onTapCancelButton: {}, onTapOKButton: {})
-        case .invalidResponse(statusCode: _):
-                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00003", onTapCancelButton: {}, onTapOKButton: {})
-        case .decodingFailed:
-                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00004", onTapCancelButton: {}, onTapOKButton: {})
-        case .notConnectedInternet:
-                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00005", onTapCancelButton: {}, onTapOKButton: {})
-        }
-    }
+//    var alertContent: AlertContent {
+//        switch self {
+//            
+//        case .invalidURL:
+//                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00001", onTapCancelButton: nil, onTapOKButton: nil)
+//        case .requestFailed(_):
+//                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00002", onTapCancelButton: {}, onTapOKButton: {})
+//        case .invalidResponse(statusCode: _):
+//                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00003", onTapCancelButton: {}, onTapOKButton: {})
+//        case .decodingFailed:
+//                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00004", onTapCancelButton: {}, onTapOKButton: {})
+//        case .notConnectedInternet:
+//                .init(title: "エラー", message: errorDescription, errorCode: "エラーコード: 00005", onTapCancelButton: {}, onTapOKButton: {})
+//        }
+//    }
 }
 

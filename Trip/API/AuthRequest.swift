@@ -1,6 +1,6 @@
 import Foundation
 /// 認証リクエスト
-struct AuthRequest: APIRequestable {
+struct AuthRequest: @MainActor APIRequestable {
     typealias Response = AuthResponse
     typealias HttpBody = AuthRequestBody
     var path: String = "/auth"

@@ -11,11 +11,13 @@ struct DetailView: View {
     ]
     
     var body: some View {
-        HStack(alignment: .center) {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 8) {
-                    ForEach(0..<1000) { _ in
-                        ThumnailView()
+        VStack {
+            HStack(alignment: .center) {
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 8) {
+                        ForEach(0..<1000) { _ in
+                            ThumnailView()
+                        }
                     }
                 }
             }

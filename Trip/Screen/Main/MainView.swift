@@ -40,6 +40,16 @@ struct MainView: View {
                 alert.hide()
             }
         }
+        .task {
+            print("task: \(Thread.unsafeCurrent)")
+            let myObject = SampleObject()
+            myObject.run()
+            await myObject.runAsync()
+            await myObject.runAsyncConcurrent()
+            myObject.runNonisolated()
+            await myObject.runNonisolatedAsync()
+            await myObject.runNonisolatedAsyncConcurrent()
+        }
     }
 }
 

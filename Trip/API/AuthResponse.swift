@@ -1,6 +1,6 @@
 import Foundation
 /// 認証レスポンス
-struct AuthResponse: APIResponsable {
+struct AuthResponse: @MainActor APIResponsable {
     /// アクセストークン
     var accessToken: String
     /// リフレッシュトークン

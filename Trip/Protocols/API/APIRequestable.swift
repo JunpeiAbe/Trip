@@ -1,6 +1,7 @@
 import Foundation
 
 /// API共通のリクエスト定義
+@MainActor
 protocol APIRequestable: Encodable {
     associatedtype Response: APIResponsable
     associatedtype HttpBody: Codable

@@ -52,8 +52,9 @@ final class RootViewState {
             case .invalidURL, .requestFailed(_), .invalidResponse(statusCode: _), .decodingFailed:
                 break
             case .notConnectedInternet:
-                var alertContent = error.alertContent
-                self.alertContent = alertContent
+                //var alertContent = error.alertContent
+                //self.alertContent = alertContent
+                break
             }
         }
     }
