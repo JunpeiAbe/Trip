@@ -12,7 +12,10 @@ enum AlertType: Equatable {
     
     var content: AlertContent {
         switch self {
-        case .error(let content), .warning(let content), .confirm(let content), .success(let content):
+        case .error(let content),
+                .warning(let content),
+                .confirm(let content),
+                .success(let content):
             return content
         }
     }
